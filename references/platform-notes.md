@@ -21,6 +21,7 @@ Collected on app.contentdriven.ai on 2026-09-28/29 while staging a 15-post Insta
 - **The generator writes its own take on the caption**, even when the topic asks for exact wording — it tends to add emoji, a closing CTA sentence, or example details. For approved copy, paste it into 發文內容 before 送審, and double-check any facts or numbers against your source.
 - 留言內容 (CTA) is a single line.
 - 發布後自動留言 is marked 即將生效 (coming soon). Until it's live, post first comments yourself.
+- After publishing, the post record may show a stock Chinese CTA for the 自訂 URL track (e.g. "看方案/直接預訂 → <link>") instead of the CTA you set, even though 審核台 showed yours. Nothing is posted while 自動留言 is off; recheck this once auto-comment goes live.
 - Alt text isn't part of the composer yet — add it in the Instagram app after publishing.
 - On Instagram, comment links show as plain text; the bio link carries the traffic.
 - Media: 自行上傳 takes images and **MP4 video** (a 1 MB 1080×1920 Reel worked). Multi-image carousels: not tried yet.
