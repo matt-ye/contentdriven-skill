@@ -1,6 +1,6 @@
 # ContentDriven — operating tips
 
-Collected on app.contentdriven.ai on 2026-09-28/29 while staging a 15-post Instagram launch (trial plan). The platform keeps improving; if something here no longer matches what you see, go with the screen and update this file.
+Collected on app.contentdriven.ai on 2026-09-28/29 (scheduling and calendar re-checked later on 2026-09-29) while staging a 15-post Instagram launch (trial plan). The platform keeps improving; if something here no longer matches what you see, go with the screen and update this file.
 
 ## How a post moves through the platform
 
@@ -47,10 +47,12 @@ Collected on app.contentdriven.ai on 2026-09-28/29 while staging a 15-post Insta
 
 Tried end to end on 2026-09-29 with one post:
 
-1. 新規劃 form: topic, posts per week, weeks, start date, publish time (default 19:00), weekdays, length, strategy, and **its own 發布與導流 block** (LINE / 自訂 URL / 自動留言 / CTA). Set 導流 here — it carries into the drafts.
-2. 展開題目 costs 1 point and **rewrites your topic** into its own headline. Edit it in the table before confirming (the field saves on a real keystroke + Tab; setting it from script alone doesn't stick).
-3. 確認並生成 (1 point per post) → the draft appears on the 貼文 page under 生成結果 after about a minute. Overwrite 發文內容 and upload media there as usual, then 送審.
+1. 新規劃 form: topic, posts per week (1–7), weeks (1–8, so at most 56 posts per plan), start date (defaults to tomorrow), publish time, weekdays (leave empty to spread posts evenly), length, strategy, and **its own 發布與導流 block** (LINE / 自訂 URL / 自動留言 / CTA). Set 導流 here — it carries into the drafts. One plan has one publish time; posts at different times need separate plans.
+2. 展開題目 (the form says it costs points, but text isn't charged — see Points) **rewrites your topic** into its own headline. Edit it in the table before confirming (the field saves on a real keystroke + Tab; setting it from script alone doesn't stick).
+3. 確認並生成 → the drafts appear on the 貼文 page under 生成結果 after about a minute. **The draft card doesn't show the planned date** — match drafts to the plan table by title, so put a code (R02, C03…) in each title before confirming. The body is written from one of the strategy's content themes (shown as 主題 on the card), not necessarily the plan title. Overwrite 發文內容 and upload media there as usual, then 送審.
 4. 審核台 shows "這篇來自內容計畫:核可後將排程於 <date time> 發布". 核可 schedules it (a time already in the past publishes right away). Timezone = 設定 → 營業時區.
+
+After confirming, a plan can't be edited or deleted: the detail page is a read-only table (# · 題目 · 預定發布 · 狀態). Row statuses seen: 草稿, 已排程, 已退回, and "—" after a draft is discarded.
 
 **Plans publish to Facebook only.** The form has no platform selector, its 各平台形態預覽 shows FB alone, the brand settings have no default-platform option, and choosing IG on the 貼文 page beforehand doesn't carry over (tested 2026-09-29). For Instagram, use the 貼文 page (publishes on approval) or schedule outside ContentDriven.
 
@@ -61,10 +63,32 @@ Also verified on a 2-week × 2-post test (expanded only, not generated):
 
 **Instagram → Facebook auto-share doesn't cover these posts.** Instagram's "Share to Facebook" only applies to posts made in the Instagram app; posts published through an API (ContentDriven publishes via Zernio) aren't cross-posted (per Buffer/Nuelink docs; not tested here).
 
-
 ## 行事曆
 
-Shows published, scheduled and planned posts, with a tray for approved posts waiting for a time.
+- Month view with counts for 已發布 / 已排程 / 計畫中; ‹ › switch months. Times follow 設定 → 營業時區.
+- **Reschedule**: click a 已排程 post → a 排程 bar opens at the bottom with a datetime field (labelled with the business timezone) → 確認排程. No "unschedule" control was found.
+- 計畫中 items (plan drafts not yet approved) are shown but not clickable.
+- A returned plan post stays on the calendar as 計畫中.
+- Tray **待排程的已核可貼文**: "approved posts without a time" can be scheduled from here. What lands in it is untested — posts approved from the 貼文 page have always published right away.
+
+## Discarding drafts (捨棄)
+
+- 捨棄 on a draft card deletes it **immediately, with no confirmation dialog** — get the user's OK first.
+- A discarded plan draft disappears from the 貼文 page and the calendar, but its row stays in the plan table with status "—", and the plan list still counts it (tested 2026-09-29).
+
+## 貼文靈感助理 (chat assistant on the 貼文 page)
+
+- Chat to get post ideas or generate posts/videos; you can attach Word / PDF / PowerPoint / Excel / CSV / images (5 points per file, up to 10 files per conversation, scans read to 20 pages).
+- **It can't create plans or schedules.** Asked whether it could import a posting calendar (dates, platforms, verbatim captions) from CSV/Excel, it answered that it can't help with content plans or scheduling (2026-09-29). There is no import path; build plans with the form.
+
+## Connections (設定 → 連線)
+
+- Each platform shows 已連上 (with account name and follower count) or 未連上. Press 重新整理狀態 before a session.
+- **Instagram can drop silently.** On 2026-09-29, after a batch had published to IG earlier that day, IG showed 未連上 until it was re-bound in Zernio. Check before any IG work.
+
+## Dashboard
+
+Follower counts per platform, published counts, and a per-post funnel (tracked links, valid clicks). Figures can lag behind the live accounts until you press 重新整理成效.
 
 ## Automating with Claude in Chrome
 
@@ -79,6 +103,6 @@ Shows published, scheduled and planned posts, with a tray for approved posts wai
 - React-controlled inputs: use the native value setter and dispatch `input` + `change`, e.g.
   `Object.getOwnPropertyDescriptor(HTMLInputElement.prototype,'value').set.call(el, v); el.dispatchEvent(new Event('input',{bubbles:true}))`.
 
-## Points (trial, as seen)
+## Points (as seen)
 
-Trial: 320 points. AI image 10 points, AI video 30 points. **Text is unlimited**: 內容計畫 says "確認時將扣 N 點", but after several plans (expand + generate) the balance was still 320/320 with nothing in the ledger — text posts fall under 文案吃到飽. Current balance and ledger: `/settings/plan`.
+Trial: 320 points. AI image 10 points, AI video 30 points. **Text is unlimited**: 內容計畫 says "確認時將扣 N 點", but after several plans (expand + generate) the balance was still 320/320 with nothing in the ledger — text posts fall under 文案吃到飽. Current balance and ledger: `/settings/plan` — check the ledger for charges you don't recognise (an AI image is 10 points; points are taken when you press generate and refunded if it fails). Plans on the pricing page: 入門 NT$590 (300 points), 個人 NT$1,680 (1,000), 商家 NT$4,880 (3,000, 3 brands), 團隊 NT$12,880 (8,000, 15 brands), all with unlimited text; online payment not open yet — upgrades go through an invite code from the team.
