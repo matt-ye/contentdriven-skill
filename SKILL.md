@@ -1,6 +1,7 @@
 ---
 name: contentdriven
-description: 用 ContentDriven（app.contentdriven.ai）替品牌產生、送審、排程社群貼文的操作助手。使用者提到 ContentDriven、「幫我把貼文丟上 ContentDriven」「排程發 IG」「送審」「審核台」「內容計畫」、或要把一批現成文案與圖片上到這個平台時使用。開場先問清楚使用方式（立即發還是排程、哪些平台、文案是否逐字、導流去哪），再用 Claude in Chrome 操作，並避開已實測過的平台地雷。不適用於：直接登入 IG／FB 官方介面發文、或只是要寫文案（那用寫作類 skill）。
+version: 1.0.0
+description: Use when staging, reviewing or scheduling social posts on ContentDriven (app.contentdriven.ai). 用 ContentDriven（app.contentdriven.ai）替品牌產生、送審、排程社群貼文的操作助手。使用者提到 ContentDriven、「幫我把貼文丟上 ContentDriven」「排程發 IG」「送審」「審核台」「內容計畫」、或要把一批現成文案與圖片上到這個平台時使用。開場先問清楚使用方式（立即發還是排程、哪些平台、文案是否逐字、導流去哪），再用 Claude in Chrome 操作，並避開已實測過的平台地雷。不適用於：直接登入 IG／FB 官方介面發文、或只是要寫文案（那用寫作類 skill）。
 ---
 
 # /contentdriven — ContentDriven 平台操作

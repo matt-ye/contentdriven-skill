@@ -1,5 +1,7 @@
 # contentdriven — Claude skill for operating ContentDriven
 
+> **繁體中文**：讓 Claude 安全地操作 ContentDriven 的 skill。開場先問你要怎麼發（立即、排程或只做草稿；哪些平台；文案逐字或讓 AI 寫；導流去哪），在「生成」前設好導流與留言 CTA，把文案覆寫回你核准的版本、上傳圖片、送審，並到審核台逐篇驗證。**任何會公開發佈的動作都要你在對話裡明確同意**；不碰帳密、不改低審核風險。安裝方式見下方 Install；實測的平台地雷在 `references/platform-notes.md`。
+
 A Claude skill that stages social posts on [ContentDriven](https://app.contentdriven.ai) safely: it asks how you want to publish (now, scheduled, or drafts only; which platforms; exact captions or AI-written; where traffic should go), sets everything that must be set **before** generating, restores your approved captions, uploads media, submits for review, and checks the review queue — without ever publishing on its own.
 
 Built from a real 15-post Instagram launch on the platform (2026-09-28/29). Every trap it avoids is written down in [`references/platform-notes.md`](references/platform-notes.md).
