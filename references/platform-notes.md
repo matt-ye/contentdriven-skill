@@ -74,7 +74,7 @@ Also verified on a 2-week × 2-post test (expanded only, not generated):
 ## Discarding drafts (捨棄)
 
 - 捨棄 on a draft card deletes it **immediately, with no confirmation dialog** — get the user's OK first.
-- A discarded plan draft disappears from the 貼文 page and the calendar, but its row stays in the plan table with status "—", and the plan list still counts it (tested 2026-09-29).
+- A discarded plan draft disappears from the 貼文 page and the calendar, but its row stays in the plan table with status "—", and the plan list still counts it (tested 2026-09-29). Discarding every draft of a plan leaves the plan itself in the list with all rows "—"; it still can't be deleted.
 
 ## 貼文靈感助理 (chat assistant on the 貼文 page)
 
@@ -84,6 +84,7 @@ Also verified on a 2-week × 2-post test (expanded only, not generated):
 ## Connections (設定 → 連線)
 
 - Each platform shows 已連上 (with account name and follower count) or 未連上. Press 重新整理狀態 before a session.
+- A platform stuck on 未連上 right after setup usually means the account was bound in Zernio but the Zernio API key was never pasted back into ContentDriven (設定 → 連線 → 填寫或更新憑證 → Zernio) — a common slip seen at the 2026-09-29 workshop.
 - **Instagram can drop silently.** On 2026-09-29, after a batch had published to IG earlier that day, IG showed 未連上 until it was re-bound in Zernio. Check before any IG work.
 
 ## Dashboard
