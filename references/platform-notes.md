@@ -23,7 +23,8 @@ Collected on app.contentdriven.ai on 2026-09-28/29 while staging a 15-post Insta
 - 發布後自動留言 is marked 即將生效 (coming soon). Until it's live, post first comments yourself.
 - Alt text isn't part of the composer yet — add it in the Instagram app after publishing.
 - On Instagram, comment links show as plain text; the bio link carries the traffic.
-- Media: 自行上傳 takes PNG/JPG (1.2 MB files worked). Multi-image carousels: not tried yet.
+- Media: 自行上傳 takes images and **MP4 video** (a 1 MB 1080×1920 Reel worked). Multi-image carousels: not tried yet.
+- **Music for Instagram Reels:** posts published through ContentDriven (or any API-based tool) can't use Instagram's music library, and Instagram can't add music to a Reel after it's published. Burn a licensed track into the MP4 before uploading (for business accounts: Meta Sound Collection, licensed for Meta platforms only), or post that Reel from the Instagram app instead.
 - Generation takes about 50–75 seconds per post.
 
 ## Strategy (策略庫)
