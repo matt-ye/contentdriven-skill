@@ -40,6 +40,7 @@ Collected on app.contentdriven.ai on 2026-09-28/29 while staging a 15-post Insta
 - Newest first; the first 10 are shown, then "顯示其餘 N 篇".
 - 導流設定 is shown for reference here; the CTA field is saved together with 核可.
 - If posting order matters (e.g. an Instagram grid), approve from the bottom up.
+- Media can't be swapped in 審核台. To change the video or image, 退回 the post — a returned post is final (status 已退回, not editable) — and create it again (for a scheduled post: a new one-post 內容計畫 with the same date and time).
 
 ## 內容計畫 (scheduling)
 
@@ -61,6 +62,7 @@ Shows published, scheduled and planned posts, with a tray for approved posts wai
 - `file_upload` can only read files inside folders the Claude session has access to; copy media into the working folder or scratchpad first.
 
 - Each page shows a short tour the first time (略過導覽 / 開始使用); close it before clicking elsewhere.
+- After a media upload the draft card re-renders and refs taken before it go stale; click 送審 from script (or take a fresh ref), then confirm the post really left the card.
 - The draft card's "上傳貼文媒體" is a hidden `<input type=file>`: un-hide it with JS, get its ref from `read_page` (filter: interactive), then `file_upload`. Each new draft has a new ref.
 - Prefer `read_page` over `find` for long batches (`find` uses a model call and counts toward usage).
 - A single `javascript_tool` call times out at about 45 s. Wait for generation with `wait` steps, then poll for the draft for up to ~30 s inside JS.
