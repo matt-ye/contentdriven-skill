@@ -24,7 +24,8 @@ Collected on app.contentdriven.ai on 2026-09-28/29 (scheduling and calendar re-c
 - After publishing, the post record may show a stock Chinese CTA for the 自訂 URL track (e.g. "看方案/直接預訂 → <link>") instead of the CTA you set, even though 審核台 showed yours. Nothing is posted while 自動留言 is off; recheck this once auto-comment goes live.
 - Alt text isn't part of the composer yet — add it in the Instagram app after publishing.
 - On Instagram, comment links show as plain text; the bio link carries the traffic.
-- Media: 自行上傳 takes images and **MP4 video** (a 1 MB 1080×1920 Reel worked). Multi-image carousels: not tried yet.
+- Media: 自行上傳 takes images and **MP4 video** (a 3 MB 1080×1920 Reel worked). **No carousels**: the upload input takes one file at a time (passing two uploads only the first); a draft can hold several media items, but the card says 發布只會帶標為「發布用」的那一個 — only the item marked 發布用 is published (tested 2026-09-30). For a carousel, post it in the platform's own app.
+- After 生成, the card can sit on 生成中 long after the draft is ready; reload the page before assuming it's stuck.
 - **Music for Instagram Reels:** posts published through ContentDriven (or any API-based tool) can't use Instagram's music library, and Instagram can't add music to a Reel after it's published. Burn a licensed track into the MP4 before uploading (for business accounts: Meta Sound Collection, licensed for Meta platforms only), or post that Reel from the Instagram app instead.
 - Generation takes about 50–75 seconds per post.
 
@@ -52,7 +53,7 @@ Tried end to end on 2026-09-29 with one post:
 3. 確認並生成 → the drafts appear on the 貼文 page under 生成結果 after about a minute. **The draft card doesn't show the planned date** — match drafts to the plan table by title, so put a code (R02, C03…) in each title before confirming. The body is written from one of the strategy's content themes (shown as 主題 on the card), not necessarily the plan title. Overwrite 發文內容 and upload media there as usual, then 送審.
 4. 審核台 shows "這篇來自內容計畫:核可後將排程於 <date time> 發布". 核可 schedules it (a time already in the past publishes right away). Timezone = 設定 → 營業時區.
 
-After confirming, a plan can't be edited or deleted: the detail page is a read-only table (# · 題目 · 預定發布 · 狀態). Row statuses seen: 草稿, 已排程, 已退回, and "—" after a draft is discarded.
+Before 確認並生成 (status 規劃中) the plan has a **刪除計畫** button. After confirming, a plan can't be edited or deleted: the detail page is a read-only table (# · 題目 · 預定發布 · 狀態). Row statuses seen: 草稿, 已排程, 已退回, and "—" after a draft is discarded.
 
 **Plans publish to Facebook only.** The form has no platform selector, its 各平台形態預覽 shows FB alone, the brand settings have no default-platform option, and choosing IG on the 貼文 page beforehand doesn't carry over (tested 2026-09-29). For Instagram, use the 貼文 page (publishes on approval) or schedule outside ContentDriven.
 
@@ -98,6 +99,8 @@ Follower counts per platform, published counts, and a per-post funnel (tracked l
 - Each page shows a short tour the first time (略過導覽 / 開始使用); close it before clicking elsewhere.
 - After a media upload the draft card re-renders and refs taken before it go stale; click 送審 from script (or take a fresh ref), then confirm the post really left the card.
 - The draft card's "上傳貼文媒體" is a hidden `<input type=file>`: un-hide it with JS, get its ref from `read_page` (filter: interactive), then `file_upload`. Each new draft has a new ref.
+- If the browser page is zoomed, ref clicks on fields outside the visible area can silently miss (checkbox/weekday toggles and typed titles didn't register). `scroll_to` the ref first, then click, and read the state back from the DOM.
+- The compliance flag can quote phrases that only exist in the generator's draft (seen again 2026-09-30: "design your dreamcatcher" flagged on a caption that doesn't contain it). Compare against the caption actually shown in 審核台 before acting on a flag.
 - Prefer `read_page` over `find` for long batches (`find` uses a model call and counts toward usage).
 - A single `javascript_tool` call times out at about 45 s. Wait for generation with `wait` steps, then poll for the draft for up to ~30 s inside JS.
 - When the session expires you'll land on `/login`; sign in again and re-inject any helper functions.
