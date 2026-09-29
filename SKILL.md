@@ -1,7 +1,7 @@
 ---
 name: contentdriven
 version: 1.0.0
-description: Use when staging, reviewing or scheduling social posts on ContentDriven (app.contentdriven.ai). 用 ContentDriven（app.contentdriven.ai）替品牌產生、送審、排程社群貼文的操作助手。使用者提到 ContentDriven、「幫我把貼文丟上 ContentDriven」「排程發 IG」「送審」「審核台」「內容計畫」、或要把一批現成文案與圖片上到這個平台時使用。開場先問清楚使用方式（立即發還是排程、哪些平台、文案是否逐字、導流去哪），再用 Claude in Chrome 操作，並避開已實測過的平台地雷。不適用於：直接登入 IG／FB 官方介面發文、或只是要寫文案（那用寫作類 skill）。
+description: Use when staging, reviewing or scheduling social posts on ContentDriven (app.contentdriven.ai). 用 ContentDriven（app.contentdriven.ai）替品牌產生、送審、排程社群貼文的操作助手。使用者提到 ContentDriven、「幫我把貼文丟上 ContentDriven」「排程發 IG」「送審」「審核台」「內容計畫」、或要把一批現成文案與圖片上到這個平台時使用。開場先問清楚使用方式（立即發還是排程、哪些平台、文案是否逐字、導流去哪），再用 Claude in Chrome 操作，並依實測整理的操作提醒進行。不適用於：直接登入 IG／FB 官方介面發文、或只是要寫文案（那用寫作類 skill）。
 ---
 
 # /contentdriven — ContentDriven 平台操作
@@ -23,9 +23,9 @@ description: Use when staging, reviewing or scheduling social posts on ContentDr
 |---|---|---|
 | 發佈時機 | **立即**（核可＝馬上發）／**排程**（走「內容計畫」）／**只做草稿，之後自己決定** | 貼文頁產生的草稿**沒有發文時間**，核可就是立刻發；要排程只能從「內容計畫」建立 |
 | 平台 | IG／FB／Threads／LINE／TikTok／YT（只列已連線的） | IG 一定要附媒體；TikTok／YT 只收影片 |
-| 文案 | **逐字使用我提供的**／讓平台 AI 寫、我再審 | 生成器**不聽「EXACT caption」**，會改寫、加句，甚至編造參數；逐字就得在送審前貼回原文 |
+| 文案 | **逐字使用我提供的**／讓平台 AI 寫、我再審 | 生成器會寫出自己的版本（加表情符號、結尾 CTA 或舉例細節）；要逐字，就在送審前把原文貼回去，並核對事實與數字 |
 | 媒體 | 自行上傳（給檔案路徑）／AI 生成圖片（10 點）／AI 影片（30 點）／純文字 | 點數有限，先確認 |
-| 導流 | 自訂網址（哪一個）／LINE 諮詢／不導流 | 必須在**生成前**設定，事後改不了 |
+| 導流 | 自訂網址（哪一個）／LINE 諮詢／不導流 | 要在**生成前**設定，會跟著草稿一起存下 |
 | 首留言 CTA | 要不要、內容是什麼 | 只能單行；自動留言功能目前標示「即將生效」＝實際不會留 |
 
 排程再多問兩題：**日期時段**（用「設定」裡的營業時區）、**一週幾篇、哪幾天**。
@@ -41,16 +41,16 @@ description: Use when staging, reviewing or scheduling social posts on ContentDr
 
 ### A. 立即發／先做草稿（貼文頁 `/posts`）
 
-每篇都照這個順序，**順序錯了設定就會丟**：
+每篇都照這個順序，設定才會正確存下：
 
 1. **生成前**在新增區設好：目標平台（只留要的）、文案長度、媒體＝自行上傳、展開「導流設定」→ 取消「LINE 諮詢連結」、勾「自訂 URL」並填網址、填「留言 CTA」。
-   - 導流與 CTA 是**在按「生成」那一刻**跟著貼文存下的。生成後再改、審核台、貼文記錄、設定頁都改不了；只能退回重新生成。
+   - 導流與 CTA 是**在按「生成」那一刻**跟著貼文存下的。之後要換，就重新生成一篇（文字生成很快）。
    - 新增區每次重新整理都會回到預設（LINE 諮詢＋自動留言開），每篇都要重設。
 2. 命題欄填一句話（逐字文案時：`<貼文代號> · <名稱>. Use this EXACT caption…` 方便在審核台辨認），按「生成」。**一篇要 50–75 秒**。
-3. 生成完成後，把「發文內容」整段**覆寫成原文**。生成器幾乎一定會改寫；送審前要逐字比對。
+3. 生成完成後，把「發文內容」整段**覆寫成原文**。生成器會寫出自己的版本；送審前逐字比對。
 4. 上傳媒體（見「上傳檔案」一節），確認卡片顯示「媒體(1)」。
 5. 確認卡片上**沒有**「LINE 導流已開啟…」的警告。
-6. 送審。**送審是唯一的存檔**：發文內容的修改只有送審才會存下；媒體會先存。
+6. 送審。發文內容的修改會在送審時存下，所以改完直接送審；媒體上傳後就已保存。
 7. 到審核台（`/review`）驗證這篇：文案逐字相符、媒體在、導流顯示正確網址、CTA 正確。
 
 ### B. 排程（內容計畫 `/plans`）
@@ -91,7 +91,7 @@ description: Use when staging, reviewing or scheduling social posts on ContentDr
 
 ## 參考（本 skill 內附）
 
-- `references/platform-notes.md`：實測過的平台行為與地雷（2026-09-28～29），含批次自動化的細節。**開工前先讀。**
+- `references/platform-notes.md`：實測整理的操作提醒（2026-09-28～29），含批次自動化的細節。**開工前先讀。**
 - `references/strategy-template.md`：`review_risk: high` 策略檔範本（禁詞一行一個、合規規則的寫法）。
 - 平台使用說明：`https://app.contentdriven.ai/help`（內容計畫、點數怎麼算）。
 
