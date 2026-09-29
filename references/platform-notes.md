@@ -52,7 +52,15 @@ Tried end to end on 2026-09-29 with one post:
 3. 確認並生成 (1 point per post) → the draft appears on the 貼文 page under 生成結果 after about a minute. Overwrite 發文內容 and upload media there as usual, then 送審.
 4. 審核台 shows "這篇來自內容計畫:核可後將排程於 <date time> 發布". 核可 schedules it (a time already in the past publishes right away). Timezone = 設定 → 營業時區.
 
-**The form has no platform selector.** The test draft came out as **FB only**. Until there's a way to pick platforms for plans, check 平台 in 審核台 before approving; for Instagram, use the 貼文 page (which publishes on approval) or schedule elsewhere.
+**Plans publish to Facebook only.** The form has no platform selector, its 各平台形態預覽 shows FB alone, the brand settings have no default-platform option, and choosing IG on the 貼文 page beforehand doesn't carry over (tested 2026-09-29). For Instagram, use the 貼文 page (publishes on approval) or schedule outside ContentDriven.
+
+Also verified on a 2-week × 2-post test (expanded only, not generated):
+- Weekday selection works: Wed + Sat from a Monday start gave 10/7, 10/10, 10/14, 10/17, all at the chosen time.
+- 整批改發布時間 → 套用到全部 changes every row's time and survives a reload.
+- The AI-proposed topics can break brand rules (one was "Debunking Myths: Dreamcatchers Aren't Just for Decoration"). Read every topic before 確認並生成.
+
+**Instagram → Facebook auto-share doesn't cover these posts.** Instagram's "Share to Facebook" only applies to posts made in the Instagram app; posts published through an API (ContentDriven publishes via Zernio) aren't cross-posted (per Buffer/Nuelink docs; not tested here).
+
 
 ## 行事曆
 
@@ -73,4 +81,4 @@ Shows published, scheduled and planned posts, with a tray for approved posts wai
 
 ## Points (trial, as seen)
 
-Trial: 320 points. AI image 10 points, AI video 30 points; 內容計畫: 1 point to propose topics + 1 point per generated post. Current balance: `/settings/plan`.
+Trial: 320 points. AI image 10 points, AI video 30 points. **Text is unlimited**: 內容計畫 says "確認時將扣 N 點", but after several plans (expand + generate) the balance was still 320/320 with nothing in the ledger — text posts fall under 文案吃到飽. Current balance and ledger: `/settings/plan`.
