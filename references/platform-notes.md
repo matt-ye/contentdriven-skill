@@ -42,15 +42,22 @@ Collected on app.contentdriven.ai on 2026-09-28/29 while staging a 15-post Insta
 
 ## 內容計畫 (scheduling)
 
-From the in-app help (`/help?doc=content-plans`): choose a topic, posts per week, number of weeks, start date, publish time (default 19:00) and weekdays; the AI proposes topics (1 point), you edit them, then "確認並生成" (1 point per post). Drafts go through review as usual, and **核可 schedules each at its planned time** (a time already in the past publishes right away). Timezone = 設定 → 營業時區.
+Tried end to end on 2026-09-29 with one post:
 
-Not tried yet: how 導流 and the CTA are set for plan-generated drafts. Schedule one post first and check it in 審核台 before doing a batch.
+1. 新規劃 form: topic, posts per week, weeks, start date, publish time (default 19:00), weekdays, length, strategy, and **its own 發布與導流 block** (LINE / 自訂 URL / 自動留言 / CTA). Set 導流 here — it carries into the drafts.
+2. 展開題目 costs 1 point and **rewrites your topic** into its own headline. Edit it in the table before confirming (the field saves on a real keystroke + Tab; setting it from script alone doesn't stick).
+3. 確認並生成 (1 point per post) → the draft appears on the 貼文 page under 生成結果 after about a minute. Overwrite 發文內容 and upload media there as usual, then 送審.
+4. 審核台 shows "這篇來自內容計畫:核可後將排程於 <date time> 發布". 核可 schedules it (a time already in the past publishes right away). Timezone = 設定 → 營業時區.
+
+**The form has no platform selector.** The test draft came out as **FB only**. Until there's a way to pick platforms for plans, check 平台 in 審核台 before approving; for Instagram, use the 貼文 page (which publishes on approval) or schedule elsewhere.
 
 ## 行事曆
 
 Shows published, scheduled and planned posts, with a tray for approved posts waiting for a time.
 
 ## Automating with Claude in Chrome
+
+- `file_upload` can only read files inside folders the Claude session has access to; copy media into the working folder or scratchpad first.
 
 - Each page shows a short tour the first time (略過導覽 / 開始使用); close it before clicking elsewhere.
 - The draft card's "上傳貼文媒體" is a hidden `<input type=file>`: un-hide it with JS, get its ref from `read_page` (filter: interactive), then `file_upload`. Each new draft has a new ref.

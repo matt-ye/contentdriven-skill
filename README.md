@@ -44,4 +44,4 @@ Then start a new session and say "use ContentDriven to …" or type `/contentdri
 
 The platform changes. When something doesn't match, trust the screen, then update `references/platform-notes.md` (and the date at its top) in a PR so the next person benefits.
 
-Not tried yet: how 導流 is set for drafts created by 內容計畫, and multi-image carousel upload.
+Known limit: 內容計畫 has no platform picker (tested drafts were FB-only). Not tried yet: multi-image carousel upload.
