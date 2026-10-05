@@ -60,6 +60,8 @@ Before 確認並生成 (status 規劃中) the plan has a **刪除計畫** button
 Also verified on a 2-week × 2-post test (expanded only, not generated):
 - Weekday selection works: Wed + Sat from a Monday start gave 10/7, 10/10, 10/14, 10/17, all at the chosen time.
 - 整批改發布時間 → 套用到全部 changes every row's time and survives a reload.
+- The expanded topics now say they reference "近 28 天互動最好的貼文" (your best-performing posts of the last 28 days), and they don't follow the weekday order you described — check which topic landed on which date and rename them with your codes.
+- Generated bodies get product facts wrong in confident detail (seen 2026-10-06: wrong pattern count, wrong default ratio, "PNG free" when it needs an account, "every design true to size", an invented origin story with "healing" framing, Markdown `**bold**` that Facebook doesn't render). Check every sentence against your sources before 送審.
 - The AI-proposed topics can break brand rules (one was "Debunking Myths: Dreamcatchers Aren't Just for Decoration"). Read every topic before 確認並生成.
 
 **Instagram → Facebook auto-share doesn't cover these posts.** Instagram's "Share to Facebook" only applies to posts made in the Instagram app; posts published through an API (ContentDriven publishes via Zernio) aren't cross-posted (per Buffer/Nuelink docs; not tested here).
@@ -99,6 +101,7 @@ Follower counts per platform, published counts, and a per-post funnel (tracked l
 - Each page shows a short tour the first time (略過導覽 / 開始使用); close it before clicking elsewhere.
 - After a media upload the draft card re-renders and refs taken before it go stale; click 送審 from script (or take a fresh ref), then confirm the post really left the card.
 - The draft card's "上傳貼文媒體" is a hidden `<input type=file>`: un-hide it with JS, get its ref from `read_page` (filter: interactive), then `file_upload`. Each new draft has a new ref.
+- The plan table's topic inputs sometimes ignore ref clicks entirely (focus stays on BODY even after `scroll_to`). Check `document.activeElement` after clicking; if it isn't the INPUT, click by screenshot coordinates instead, then Ctrl+A, type, Tab.
 - If the browser page is zoomed, ref clicks on fields outside the visible area can silently miss (checkbox/weekday toggles and typed titles didn't register). `scroll_to` the ref first, then click, and read the state back from the DOM.
 - The compliance flag can quote phrases that only exist in the generator's draft (seen again 2026-09-30: "design your dreamcatcher" flagged on a caption that doesn't contain it). Compare against the caption actually shown in 審核台 before acting on a flag.
 - Prefer `read_page` over `find` for long batches (`find` uses a model call and counts toward usage).
